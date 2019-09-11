@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+{% load qr_code %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+<link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css" integrity="sha384-vus3nQHTD+5mpDiZ4rkEPlnkcyTP+49BhJ4wJeJunw06ZAp+wzzeBPUXr42fi8If" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>
+
+</head>
+<body>
+<div class="container" style="margin: 10%">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <!--Card content-->
+                <div class="card-header text-center">
+                    <h5>نموذج معاملة حجة استحكام</h5>
+                </div>
+                <div class="card-body ">
+                    <div class="row">
+                    <div class="col-xl-2"></div>
+                        <div  class="col-xl-8">
+                            <form style="color: #757575;"  action="" method="post">
+                                {% csrf_token %}
+                            <div class="row" style="direction: rtl">
+
+                                <div class="md-form col-xl-6 mt-3">
+                                    <label for="file_num">رقم المعاملة</label>
+                                    <input type="text" name="file_num" id="file_num" class="form-control" value="{{ file_num }}" style="direction: rtl" >
+                                </div>
+
+                                <div class="md-form col-xl-6 mt-3">
+                                    <label for="file_date">تاريخ المعاملة</label>
+                                    <input type="text" name="file_date" id="file_date" class="form-control" value="{{ file_date }}" style="direction: rtl" >
+                                </div>
+
+                                <div class="md-form col-xl-6 mt-3">
+                                    <label for="file_from">جهة المعاملة</label>
+                                    <input type="text" name= "file_from" id="file_from" class="form-control" value="{{ file_from }}" style="direction: rtl" >
+                                </div>
+
+                                <div class="md-form col-xl-6 mt-3">
+                                    <label for="uname">اسم مقدم الطلب</label>
+                                    <input type="text" name="uname" id="uname" class="form-control" value="{{ uname }}" style="direction: rtl" >
+                                </div>
+
+                                <div class="md-form col-xl-6 mt-3">
+                                    <label for="uid">السجل المدني</label>
+                                    <input type="text" name="uid" id="uid" class="form-control" value="{{ uid }}" style="direction: rtl" >
+                                </div>
+
+                                <div class="md-form col-xl-6 mt-3">
+                                    <label for="mobile">رقم الجوال</label>
+                                    <input type="text" name="mobile" id="mobile" class="form-control" value="{{ mobile }}" style="direction: rtl" >
+                                </div>
+
+
+
+{#                             {% for qr in qr_list.items %}#}
+{#                                <div class="md-form col-xl-6 mt-3">#}
+{#                                    <label for="{{ qr.0 }}">{{ qr.0 }}</label>#}
+{#                                    <input type="text" name="{{ qr.0 }}" id="{{ qr.0 }}" class="form-control"#}
+{#                                           value="{{ qr.1 }}" style="direction: rtl" disabled>#}
+{#                                </div>#}
+{#                             {% endfor %}#}
+                            </div>
+                                <br>
+                                <hr>
+                                                <!-- locations -->
+                                <div class="row">
+                                    <div class="col text-center">
+                                           <h5>الإحداثيات الرقمية للموقع</h5>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+
+                                     <!-- e1 -->
+                                    <div class="col">
+                                        <div class="md-form mt-3">
+                                            <label for="file_date text-center">شرقيات 1</label>
+                                            <input type="text" name="e1" id="e1" class="form-control"
+                                                   value="{{ e1 }}"style="direction: rtl">
+                                        </div>
+                                    </div>
+
+                                     <div class="col">
+                                        <!-- n1 -->
+                                        <div class="md-form mt-3">
+                                            <label for="n1 text-center">شماليات 1</label>
+                                            <input type="text" name="n1" id="n1" class="form-control"
+                                                   value="{{ n1 }}" style="direction: rtl">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+
+                                    <!-- e2 -->
+                                    <div class="col">
+                                        <div class="md-form mt-3">
+                                            <label for="file_date text-center">شرقيات 2</label>
+                                            <input type="text" name="e2" id="e2" class="form-control"
+                                                   value="{{ e2 }}"style="direction: rtl">
+                                        </div>
+                                    </div>
+
+                                                       <!-- n2 -->
+                                     <div class="col">
+                                        <div class="md-form mt-3">
+                                            <label for="n2 text-center">شماليات 2</label>
+                                            <input type="text" name="n2" id="n2" class="form-control"
+                                                   value="{{ n2 }}"style="direction: rtl">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+
+                                    <!-- e3 -->
+                                    <div class="col">
+                                        <div class="md-form mt-3">
+                                            <label for="file_date text-center">شرقيات 3</label>
+                                            <input type="text" name="e3" id="e3" class="form-control"
+                                                   value="{{ e3 }}"style="direction: rtl">
+                                        </div>
+                                    </div>
+
+                                                     <!-- n3 -->
+                                     <div class="col">
+                                        <div class="md-form mt-3">
+                                            <label for="n3 text-center">شماليات 3</label>
+                                            <input type="text" name="n3" id="n3" class="form-control"
+                                                   value="{{ n3 }}"style="direction: rtl">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+
+                                    <!-- e4 -->
+                                    <div class="col">
+                                        <div class="md-form mt-3">
+                                            <label for="file_date text-center">شرقيات 4</label>
+                                            <input type="text" name="e4" id="e4" class="form-control"
+                                                   value="{{ e4 }}"style="direction: rtl">
+                                        </div>
+                                    </div>
+
+                                     <!-- n4 -->
+                                     <div class="col">
+                                        <div class="md-form mt-3">
+                                            <label for="n4 text-center">شماليات 4</label>
+                                            <input type="text" name="n4" id="n4" class="form-control"
+                                                   value="{{ n4 }}"style="direction: rtl">
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <br>
+                            <div class="row">
+                                <div class="col"></div>
+                                <div class="col">
+                                       <div class="md-form mt-3">
+                                    <img src="{% qr_url_from_text qr_list size=2 version=10 image_format='png' %}">
+                                       </div>
+                                </div>
+                                <div class="col"></div>
+                            </div>
+
+                                <br>
+                            <div class="row">
+                                <div class="col">
+                                    <button class="btn btn-outline-warning btn-rounded btn-block z-depth-0 my-4 waves-effect"
+                                            type="reset">إلغاء
+                                    </button>
+                                </div>
+                                <div class="col">
+                                    <button class="btn btn-outline-success btn-rounded btn-block z-depth-0 my-4 waves-effect"
+                                            type="submit" onclick="pdffun()">طباعة الخطاب
+                                    </button>
+                                </div>
+                            </div>
+                            </form>
+
+</div>
+                    <div class="col-xl-2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function pdffun() {
+      window.print()
+    }
+</script>
+</body>
+</html>                                                            
